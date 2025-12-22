@@ -1,38 +1,161 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# =============================================================================
+# SECURITY - Sensitive files (NEVER commit these)
+# =============================================================================
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+secrets/
+credentials/
+*.credentials
+*.secret
+*_secret*
+*.private
+private/
+.secrets
+.password
+.passwords
+
+# API keys and tokens (common patterns)
+*api_key*
+*apikey*
+*secret_key*
+*secretkey*
+*access_token*
+*auth_token*
+
+# =============================================================================
 # Dependencies
-node_modules
+# =============================================================================
+node_modules/
 .pnp
 .pnp.js
+.yarn/install-state.gz
 
-# Local env files
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# Python
+.venv/
+venv/
+ENV/
+env/
+.env/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
 
-# Testing
-coverage
-
-# Turbo
-.turbo
-
-# Vercel
-.vercel
-
+# =============================================================================
 # Build Outputs
+# =============================================================================
+# Next.js
 .next/
 out/
-build
-dist
+build/
+dist/
 
+# Python
+*.egg-info/
+*.egg
+.eggs/
+sdist/
+wheels/
+*.manifest
+*.spec
 
-# Debug
+# =============================================================================
+# Cache & Temporary Files
+# =============================================================================
+# Turbo
+.turbo/
+
+# Python
+.cache/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+*.py,cover
+.nox/
+.tox/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# =============================================================================
+# Testing & Coverage
+# =============================================================================
+coverage/
+htmlcov/
+.nyc_output/
+*.lcov
+
+# =============================================================================
+# Logs & Debug
+# =============================================================================
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+logs/
 
+# =============================================================================
+# Claude Code (user-specific)
+# =============================================================================
+.claude/
+
+# =============================================================================
+# Database files
+# =============================================================================
+*.sqlite
+*.sqlite3
+*.db
+
+# =============================================================================
 # Misc
-.DS_Store
-*.pem
+# =============================================================================
+# Vercel
+.vercel/
+
+# Docker
+.docker/
+
+# Local development
+*.local
+*.bak
+*.tmp
+*.temp
+
+# Generated files
+*.generated.*
+
+# Lock files (keep pnpm-lock.yaml and uv.lock)
+package-lock.json
+yarn.lock

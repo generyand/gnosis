@@ -1,0 +1,16 @@
+[project]
+name = "gnosis-api"
+version = "1.0.0"
+description = "Gnosis API - Real-time semantic mind-mapping engine"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi[standard]>=0.125.0",
+    "langchain>=1.2.0",
+    "langchain-cerebras>=0.7.0",
+    "pydantic-settings>=2.12.0",
+    "qdrant-client>=1.16.2",
+    "voyageai>=0.3.4",
+]
+
+[project.scripts]
+export-openapi = "scripts.export_openapi:main"

@@ -1,6 +1,7 @@
 {
   "$schema": "https://turborepo.com/schema.json",
   "ui": "tui",
+  "globalEnv": ["API_URL"],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
@@ -16,6 +17,10 @@
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "generate:api": {
+      "inputs": ["orval.config.ts", "../api/openapi.json"],
+      "outputs": ["src/lib/api/**"]
     }
   }
 }
