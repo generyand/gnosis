@@ -14,6 +14,14 @@ Gnosis transforms how you explore topics by creating dynamic, interconnected min
 - **Knowledge Persistence** - Your mind map saves automatically to local storage
 - **Neural Logging** - See the AI's reasoning process as it expands your knowledge graph
 
+## Screenshots
+
+![User Interface](docs/images/user-interface.png)
+*Mind map with expanded knowledge graph*
+
+![Empty State](docs/images/empty-state.png)
+*Initial empty state before exploration*
+
 ## Tech Stack
 
 | Layer | Technology |
