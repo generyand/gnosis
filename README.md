@@ -1,135 +1,152 @@
-# Turborepo starter
+# Gnosis
 
-This Turborepo starter is maintained by the Turborepo core team.
+A real-time semantic mind-mapping engine that helps you explore and connect ideas through AI-powered knowledge graphs.
 
-## Using this example
+## Overview
 
-Run the following command:
+Gnosis transforms how you explore topics by creating dynamic, interconnected mind maps. Enter any concept and watch as the AI expands your knowledge graph with semantically related ideas, helping you discover connections you might never have found on your own.
 
-```sh
-npx create-turbo@latest
-```
+### Key Features
 
-## What's inside?
+- **AI-Powered Expansion** - Enter a topic and let the AI generate related concepts and connections
+- **Semantic Search** - Find similar concepts using vector embeddings for intelligent matching
+- **Real-Time Visualization** - Interactive force-directed graph that updates as you explore
+- **Knowledge Persistence** - Your mind map saves automatically to local storage
+- **Neural Logging** - See the AI's reasoning process as it expands your knowledge graph
 
-This Turborepo includes the following packages/apps:
+## Tech Stack
 
-### Apps and Packages
+| Layer | Technology |
+|-------|------------|
+| Frontend | Next.js 16, React 19, TanStack Query v5 |
+| Visualization | react-force-graph-2d |
+| Styling | Tailwind CSS v4, shadcn/ui, Motion v12 |
+| Backend | FastAPI (Python 3.12+) |
+| LLM | LangChain + Cerebras |
+| Embeddings | Voyage AI (voyage-3) |
+| Vector DB | Qdrant (cloud-hosted) |
+| Monorepo | Turborepo, pnpm |
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
+## Project Structure
 
 ```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
+gnosis/
+├── apps/
+│   ├── api/              # FastAPI backend
+│   └── web/              # Next.js frontend
+├── packages/
+│   ├── ui/               # Shared UI components
+│   ├── eslint-config/    # ESLint configurations
+│   └── typescript-config/# TypeScript configurations
+└── docs/                 # Documentation
 ```
 
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+## Getting Started
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
+### Prerequisites
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
+- Node.js 22+
+- pnpm 9+
+- Python 3.12+
+- [uv](https://github.com/astral-sh/uv) (Python package manager)
 
-### Develop
+### Installation
 
-To develop all apps and packages, run the following command:
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/gnosis.git
+   cd gnosis
+   ```
 
-```
-cd my-turborepo
+2. **Install dependencies**
+   ```bash
+   pnpm install
+   ```
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
+3. **Configure environment variables**
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
-```
+   Copy the example environment file and add your API keys:
+   ```bash
+   cp apps/api/.env.example apps/api/.env
+   ```
 
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+   Required variables:
+   - `VOYAGE_API_KEY` - Voyage AI API key for embeddings
+   - `CEREBRAS_API_KEY` - Cerebras API key for LLM inference
+   - `QDRANT_URL` - Qdrant Cloud cluster URL
+   - `QDRANT_API_KEY` - Qdrant API key
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
+4. **Start development servers**
+   ```bash
+   pnpm dev
+   ```
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
+   This starts:
+   - Frontend at http://localhost:3000
+   - Backend at http://localhost:8000
 
-### Remote Caching
+## Development
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+### Available Commands
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+```bash
+# Run full stack
+pnpm dev
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+# Run individual apps
+pnpm dev:web        # Frontend only
+pnpm dev:api        # Backend only
 
-```
-cd my-turborepo
+# Build all apps
+pnpm build
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
+# Type checking
+pnpm check-types
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-```
+# Linting
+pnpm lint
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+# Format code
+pnpm format
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
+# Generate API client from OpenAPI
+pnpm generate:api
 ```
 
-## Useful Links
+### API Endpoints
 
-Learn more about the power of Turborepo:
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/health` | Health check |
+| POST | `/api/v1/graph/expand` | Expand a topic into nodes and edges |
+| POST | `/api/v1/graph/seed` | Seed initial knowledge |
+| POST | `/api/v1/graph/check-similarity` | Check topic similarity |
 
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+### Code Generation
+
+API types and React Query hooks are auto-generated from the OpenAPI schema:
+
+```bash
+# Export OpenAPI schema from backend
+cd apps/api && uv run export-openapi
+
+# Generate TypeScript types + hooks
+pnpm generate:api
+```
+
+## How It Works
+
+1. **Input** - User enters a topic in the omni-bar
+2. **Embed** - Backend generates vector embeddings using Voyage AI
+3. **Search** - Finds semantically similar concepts in Qdrant
+4. **Generate** - LLM creates related nodes and connections
+5. **Store** - New concepts are persisted in the vector database
+6. **Visualize** - Frontend renders the updated graph in real-time
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
