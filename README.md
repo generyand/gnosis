@@ -27,7 +27,7 @@ Gnosis transforms how you explore topics by creating dynamic, interconnected min
 | Layer | Technology |
 |-------|------------|
 | Frontend | Next.js 16, React 19, TanStack Query v5 |
-| Visualization | react-force-graph-2d |
+| Visualization | D3.js (d3-force, d3-zoom) |
 | Styling | Tailwind CSS v4, shadcn/ui, Motion v12 |
 | Backend | FastAPI (Python 3.12+) |
 | LLM | LangChain + Cerebras |
